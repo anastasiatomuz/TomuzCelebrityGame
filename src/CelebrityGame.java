@@ -39,8 +39,17 @@ public class CelebrityGame {
 	 * @return Whether it matches regardless of case or extraneous external
 	 *         spaces.
 	 */
-	public boolean processGuess(String guess) {
-		return false; // stub
+	public boolean processGuess(String guess){
+		if (guess.toLowerCase().trim().equals(gameCelebrity.getAnswer().toLowerCase())){
+			celebGameList.remove(0);
+			if (celebGameList.size() > 0){
+				gameCelebrity = celebGameList.get(0);
+			} else {
+				gameCelebrity = new Celebrity("", "");
+			}
+			return true;
+		}
+		return false;
 	}
 
 	/**
