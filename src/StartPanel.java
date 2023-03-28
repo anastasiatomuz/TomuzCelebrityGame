@@ -105,8 +105,8 @@ public class StartPanel extends JPanel implements ActionListener{
     celebrityClue = "Enter the clue for the celebrity";
     clueLabel = new JLabel(celebrityClue);
 
-    answerField = new JTextField("Type celebrity here (Full name)");
-    clueField = new JTextField("Enter celebrity clue here (don't be too vague!)");
+    answerField = new JTextField("Type celebrity here (at least 4 letters)");
+    clueField = new JTextField("Enter celebrity clue here (at least 10 letters)");
     addCelebrityButton = new JButton("Add current celebrity");
     startButton = new JButton("Start Celebrity game");
     celebrityCount = 0;
@@ -122,16 +122,27 @@ public class StartPanel extends JPanel implements ActionListener{
   }
 
   public void actionPerformed(ActionEvent ae){
+    Object source = ae.getSource();
+    JButton clickedButton = (JButton) source;
+    String text = clickedButton.getText();
+
     // when "add celebrity" button gets clicked:
-    answerField.setBackground(Color.WHITE);
-    clueField.setBackground(Color.WHITE);
-    if (validate(answerField.getText(), clueField.getText())) {
-      addToGame();
-    } else {
-      invalidInput();
+    if (text.equals("Add current celebrity")) {
+      answerField.setBackground(Color.WHITE);
+      clueField.setBackground(Color.WHITE);
+      if (validate(answerField.getText(), clueField.getText())) {
+        addToGame();
+      } else {
+        invalidInput();
+      }
+      celebrityCount = controller.getCelebrityGameSize();
+      celebrityCountLabel.setText(countLabelText + celebrityCount);
     }
-    celebrityCount = controller.getCelebrityGameSize();
-    celebrityCountLabel.setText(countLabelText + celebrityCount);
+
+    //when "start game" button get clicked
+    else if (text.equals("Start Celebrity game")){
+      controller.play();
+    }
 
   }
   
@@ -191,6 +202,7 @@ public class StartPanel extends JPanel implements ActionListener{
    */
   private void setupListeners() {
     addCelebrityButton.addActionListener(this);
+    startButton.addActionListener(this);
   }
 
 
