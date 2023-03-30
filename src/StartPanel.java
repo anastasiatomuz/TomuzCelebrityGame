@@ -143,9 +143,14 @@ public class StartPanel extends JPanel implements ActionListener{
     else if (text.equals("Start Celebrity game")){
       controller.play();
     }
-
   }
-  
+
+
+  public void resetToStart(){
+    startButton.setEnabled(false);
+    celebrityCount = 0;
+    celebrityCountLabel.setText(countLabelText + celebrityCount);
+  }
   /**
    * Adds all components to the StartPanel and uses the SpringLayout variable,
    * panelLayout, as the layout manager.

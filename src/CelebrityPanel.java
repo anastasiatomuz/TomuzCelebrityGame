@@ -126,6 +126,8 @@ public class CelebrityPanel extends JPanel implements ActionListener {
 
       if (text.equals("Submit guess")) {
         updateScreen();
+      } else if(text.equals("Start again")){
+        startOver();
       }
 
     } else if (source instanceof Timer){
@@ -195,6 +197,7 @@ public class CelebrityPanel extends JPanel implements ActionListener {
    */
   private void setupListeners() {
     guessButton.addActionListener(this);
+    resetButton.addActionListener(this);
     countdownTimer.addActionListener(this);
     countdownTimer.start();
   }
@@ -214,6 +217,7 @@ public class CelebrityPanel extends JPanel implements ActionListener {
         staticTimerLabel.setText("YOU WIN!");
       } else {
         staticTimerLabel.setText("Time's Up! YOU LOSE!");
+        guessButton.setEnabled(false);
       }
     }
   }
@@ -255,7 +259,13 @@ public class CelebrityPanel extends JPanel implements ActionListener {
       guessButton.setEnabled(false);
       guessField.setEnabled(false);
     }
+  }
 
-
+  private void startOver(){
+    controller.restart();
+    guessField.setEnabled(true);
+    guessField.setText("Enter guess here");
+    guessButton.setEnabled(true);
+    clueArea.setBackground(Color.WHITE);
   }
 }

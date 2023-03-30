@@ -78,12 +78,14 @@ public class CelebrityFrame extends JFrame {
 			gamePanel.addClue(controller.sendClue());
 		}
 
+		if (screen.equals("START")){
+			startPanel.resetToStart();
+		}
+
 		// present the appropriate panel based on the name provided in "screen"
 		// (either "START" or "GAME")
 		LayoutManager layout = panelCards.getLayout();
 		CardLayout cardLayout = (CardLayout) layout;
 		cardLayout.show(panelCards, screen);
-
-
 	}
 }

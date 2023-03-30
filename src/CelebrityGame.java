@@ -64,6 +64,12 @@ public class CelebrityGame {
 		}
 	}
 
+	public void restart(){
+		gameWindow.replaceScreen("START");
+		celebGameList.clear();
+		play();
+	}
+
 	/**
 	 * Adds a Celebrity of specified type to the game list
 	 * 
